@@ -1,4 +1,4 @@
-package com.kkaansrky.valorantapp.ui.error
+package com.kkaansrky.valorantapp.ui.status
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
@@ -16,7 +16,7 @@ import com.kkaansrky.valorantapp.R
 
 @Preview
 @Composable
-fun showError() {
+fun ShowError() {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.error))
     val progress by animateLottieCompositionAsState(
         composition,
@@ -27,7 +27,7 @@ fun showError() {
 }
 
 @Composable
-fun showLoading() {
+fun ShowLoading() {
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.loading))
     val progress by animateLottieCompositionAsState(
         composition,

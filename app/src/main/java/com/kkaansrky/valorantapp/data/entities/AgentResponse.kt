@@ -2,10 +2,14 @@ package com.kkaansrky.valorantapp.data.entities
 
 
 data class AgentsResponse(
-    val `data`: List<AgentResponse>,
+    val `data`: List<Agent>,
 )
 
 data class AgentResponse(
+    val data: Agent
+)
+
+data class Agent(
     val abilities: List<Ability>,
     val assetPath: String,
     val background: String,

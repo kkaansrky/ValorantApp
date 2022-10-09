@@ -7,7 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.kkaansrky.valorantapp.ui.Screen
-import com.kkaansrky.valorantapp.ui.listagents.AgentsListScreen
+import com.kkaansrky.valorantapp.ui.agent.agentdetail.AgentDetailScreen
+import com.kkaansrky.valorantapp.ui.agent.listagents.AgentsListScreen
 import com.kkaansrky.valorantapp.ui.theme.ValorantAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.AgentDetailScreen.route + "/{agentUID}"
                     ) {
-                        //AgentDetailScreen()
+                        AgentDetailScreen(navController)
                     }
 
                 }

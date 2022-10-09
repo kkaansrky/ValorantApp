@@ -1,6 +1,5 @@
 package com.kkaansrky.valorantapp.data.remote
 
-import com.kkaansrky.valorantapp.data.entities.AgentsResponse
 import com.kkaansrky.valorantapp.util.BaseDataSource
 import javax.inject.Inject
 
@@ -13,7 +12,7 @@ class RemoteDataSource @Inject constructor(
     }
 
 
-    suspend fun getAgentByUID(language: String, agentUID: String) = getResult {
-        apiService.getAgentByUID(language, agentUID)
+    suspend fun getAgentByUID(agentUID: String, language: String) = getResult {
+        apiService.getAgentByUID(agentUID, language)
     }
 }
