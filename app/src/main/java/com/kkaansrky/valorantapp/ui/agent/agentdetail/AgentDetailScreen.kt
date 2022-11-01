@@ -8,17 +8,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
 import com.kkaansrky.valorantapp.data.entities.AgentResponse
 import com.kkaansrky.valorantapp.ui.status.ShowError
 import com.kkaansrky.valorantapp.ui.status.ShowLoading
+import com.kkaansrky.valorantapp.ui.theme.Mojo
+import com.kkaansrky.valorantapp.ui.theme.RadicalRed
 
 @Composable
 fun AgentDetailScreen(
@@ -42,53 +42,66 @@ fun AgentDetailScreen(
 
 @Composable
 fun ShowAgent(agent: AgentResponse) = with(agent.data) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(0.dp, 4.dp)
-            .background(Color.Red),
-        verticalArrangement = Arrangement.SpaceBetween,
-        horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
-        Box(
+            .fillMaxHeight()
+            .background(Mojo)
+    ) {
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp, 4.dp)
-        ) {
-            Image(
-                painter = rememberImagePainter(background),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                contentScale = ContentScale.Crop
-            )
-            Image(
-                painter = rememberImagePainter(fullPortrait),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                contentScale = ContentScale.Crop
-            )
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+
+            ) {
+            ShowAgentImage(background = background, fullPortrait = fullPortrait)
+            ShowAgentSpecs(displayName = displayName, developerName = developerName)
         }
+    }
+}
 
+@Composable
+private fun ShowAgentSpecs(displayName: String, developerName: String) {
+    Text(
+        text = displayName,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        modifier = Modifier
+            .fillMaxWidth(),
+        textAlign = TextAlign.Center
+    )
 
-        Text(
-            text = displayName,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1,
+    Text(
+        text = developerName,
+        overflow = TextOverflow.Ellipsis,
+        maxLines = 1,
+        modifier = Modifier
+            .fillMaxWidth(),
+        textAlign = TextAlign.Center
+    )
+}
+
+@Composable
+private fun ShowAgentImage(background: String, fullPortrait: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(RadicalRed)
+    ) {
+        Image(
+            painter = rememberImagePainter(background),
+            contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth(),
-            textAlign = TextAlign.Center
+            contentScale = ContentScale.Crop
         )
-
-        Text(
-            text = developerName,
-            overflow = TextOverflow.Ellipsis,
-            maxLines = 1,
+        Image(
+            painter = rememberImagePainter(fullPortrait),
+            contentDescription = null,
             modifier = Modifier
                 .fillMaxWidth(),
-            textAlign = TextAlign.Center
+            contentScale = ContentScale.Crop
         )
     }
 }
