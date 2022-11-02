@@ -102,6 +102,9 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil-compose:1.4.0")
 
+    //CollapsingToolbar
+    implementation "me.onebone:toolbar-compose:2.3.5"
+
     //Test and debug
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
