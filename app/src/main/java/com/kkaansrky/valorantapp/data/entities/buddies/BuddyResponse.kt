@@ -1,6 +1,6 @@
 package com.kkaansrky.valorantapp.data.entities.buddies
 
-data class BuddiesResponse(
-    val `data`: List<Buddy>,
+data class BuddyResponse(
+    val `data`: Buddy,
     val status: Int
 )

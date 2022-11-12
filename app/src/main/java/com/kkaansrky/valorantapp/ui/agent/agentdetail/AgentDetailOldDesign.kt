@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.kkaansrky.valorantapp.data.entities.AgentResponse
+import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
 
 @Deprecated("Old Design")
 @Composable

@@ -15,14 +15,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.kkaansrky.valorantapp.data.entities.Agent
+import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
 import com.kkaansrky.valorantapp.ui.theme.Mojo
 import com.kkaansrky.valorantapp.ui.theme.RadicalRed
 
 @Composable
 fun AgentListItem(
-    agent: Agent,
-    onItemClick: (Agent) -> Unit
+    agent: AgentDto,
+    onItemClick: (AgentDto) -> Unit
 ) {
     Card(
         modifier = Modifier

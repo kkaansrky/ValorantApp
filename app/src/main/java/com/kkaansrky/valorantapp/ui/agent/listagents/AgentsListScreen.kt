@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.kkaansrky.valorantapp.data.entities.Agent
-import com.kkaansrky.valorantapp.ui.Screen
+import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
+import com.kkaansrky.valorantapp.ui.main.Screen
 import com.kkaansrky.valorantapp.ui.agent.items.AgentListItem
 import com.kkaansrky.valorantapp.ui.status.ShowError
 import com.kkaansrky.valorantapp.ui.status.ShowLoading
@@ -39,7 +39,7 @@ fun AgentsListScreen(
 }
 
 @Composable
-fun ShowAgentsList(agents: List<Agent>, navController: NavController) {
+fun ShowAgentsList(agents: List<AgentDto>, navController: NavController) {
     val cellValue = remember { GridLayoutCell(2) }
 
     LazyVerticalGrid(

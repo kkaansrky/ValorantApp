@@ -1,4 +1,4 @@
-package com.kkaansrky.valorantapp.ui
+package com.kkaansrky.valorantapp.ui.main
 
 sealed class Screen(val route: String) {
     object AgentsListScreen : Screen("agents_list_screen")

@@ -1,8 +1,9 @@
-package com.kkaansrky.valorantapp.util
+package com.kkaansrky.valorantapp.data.remote.source
 
+import com.kkaansrky.valorantapp.util.Resource
 import retrofit2.Response
 
-abstract class BaseDataSource {
+abstract class BaseRemoteDataSource {
     protected suspend fun <T> getResult(call: suspend () -> Response<T>): Resource<T> {
         try {
             val response = call()
