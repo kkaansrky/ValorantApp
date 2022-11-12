@@ -1,22 +1,22 @@
 package com.kkaansrky.valorantapp.ui.agent.agentdetail
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import coil.compose.rememberImagePainter
+import com.kkaansrky.valorantapp.data.entities.Agent
 import com.kkaansrky.valorantapp.data.entities.AgentResponse
 import com.kkaansrky.valorantapp.ui.status.ShowError
 import com.kkaansrky.valorantapp.ui.status.ShowLoading
@@ -48,26 +48,10 @@ fun AgentDetailScreen(
 }
 
 @Composable
-fun ShowAgent(agent: AgentResponse) = with(agent.data) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .fillMaxHeight()
-            .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally,
-
-        ) {
-        ShowAgentImage(background = background, fullPortrait = fullPortrait)
-        for (i in 1..100)
-            ShowAgentSpecs(displayName = displayName, developerName = developerName)
-    }
-}
-
-@Composable
 fun ShowAgentCollapsing(agent: AgentResponse) = with(agent.data) {
 
     val state = rememberCollapsingToolbarScaffoldState()
-    val progress =state.toolbarState.progress
+    val progress = state.toolbarState.progress
 
     CollapsingToolbarScaffold(
         modifier = Modifier
@@ -80,24 +64,15 @@ fun ShowAgentCollapsing(agent: AgentResponse) = with(agent.data) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(450.dp)
+                    .height(440.dp)
                     .pin()
                     .background(RadicalRed)
             )
 
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(imageHeight),
-                painter = rememberImagePainter(background),
-                contentDescription = null,
-            )
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(imageHeight),
-                painter = rememberImagePainter(fullPortrait),
-                contentDescription = null,
+            ShowAgentImage(
+                background = background,
+                fullPortrait = fullPortrait,
+                imageHeight = imageHeight
             )
         }
     ) {
@@ -105,57 +80,18 @@ fun ShowAgentCollapsing(agent: AgentResponse) = with(agent.data) {
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
+            horizontalAlignment = Alignment.Start,
 
             ) {
-
-            for (i in 1..100) {
-                ShowAgentSpecs(displayName = displayName, developerName = developerName)
-            }
+            ShowAgentSpecs(agent.data)
         }
     }
 }
 
 @Composable
-private fun ShowAgentSpecs(displayName: String, developerName: String) {
-    Text(
-        text = displayName,
-        overflow = TextOverflow.Ellipsis,
-        maxLines = 1,
-        modifier = Modifier
-            .fillMaxWidth(),
-        textAlign = TextAlign.Center
-    )
-
-    Text(
-        text = developerName,
-        overflow = TextOverflow.Ellipsis,
-        maxLines = 1,
-        modifier = Modifier
-            .fillMaxWidth(),
-        textAlign = TextAlign.Center
-    )
+fun ShowAgentSpecs(agent: Agent) {
+    ShowAgentHeader(header = agent.displayName)
+    ShowAgentText(text = agent.description)
+    ShowAgentAbilities(abilities = agent.abilities)
 }
 
-@Composable
-private fun ShowAgentImage(background: String, fullPortrait: String) {
-    Box(
-        modifier = Modifier
-            .background(RadicalRed)
-    ) {
-        Image(
-            painter = rememberImagePainter(background),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth(),
-            contentScale = ContentScale.Crop
-        )
-        Image(
-            painter = rememberImagePainter(fullPortrait),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth(),
-            contentScale = ContentScale.Crop
-        )
-    }
-}
