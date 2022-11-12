@@ -2,9 +2,6 @@ package com.kkaansrky.valorantapp.ui.agent.agentdetail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
-import androidx.compose.foundation.gestures.rememberScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -13,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -71,54 +67,43 @@ fun ShowAgent(agent: AgentResponse) = with(agent.data) {
 fun ShowAgentCollapsing(agent: AgentResponse) = with(agent.data) {
 
     val state = rememberCollapsingToolbarScaffoldState()
+    val progress =state.toolbarState.progress
 
     CollapsingToolbarScaffold(
         modifier = Modifier
-            .fillMaxSize()
-            .scrollable(
-                orientation = Orientation.Vertical,
-                // allow to scroll from within the toolbar
-                state = rememberScrollableState { delta ->
-                    delta
-                }
-            ),
-        enabled = true,
+            .fillMaxSize(),
         state = state,
         scrollStrategy = ScrollStrategy.ExitUntilCollapsed,
         toolbar = {
-            val imageHeight = (500 - (500 - 150) * state.toolbarState.progress).dp
-            val scale = state.offsetY.toFloat()
+            val imageHeight = (200 + (400 - 200) * progress).dp
 
             Box(
                 modifier = Modifier
-                    .background(RadicalRed)
-                    .pin()
                     .fillMaxWidth()
-                    .height(150.dp)
-                    .parallax(0.5f)
-                    .graphicsLayer {
-                        alpha = state.toolbarState.progress
-                    },
-            ) {
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = rememberImagePainter(background),
-                    contentDescription = null,
-                    contentScale = ContentScale.Inside,
-                )
-                Image(
-                    modifier = Modifier.fillMaxWidth(),
-                    painter = rememberImagePainter(fullPortrait),
-                    contentDescription = null,
-                    contentScale = ContentScale.Inside,
-                )
-            }
+                    .height(450.dp)
+                    .pin()
+                    .background(RadicalRed)
+            )
+
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(imageHeight),
+                painter = rememberImagePainter(background),
+                contentDescription = null,
+            )
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(imageHeight),
+                painter = rememberImagePainter(fullPortrait),
+                contentDescription = null,
+            )
         }
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight()
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
 
