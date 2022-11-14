@@ -1,7 +1,17 @@
 package com.kkaansrky.valorantapp.ui.main
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import com.deliveryhero.whetstone.Whetstone
+import com.deliveryhero.whetstone.app.ApplicationComponentOwner
+import com.deliveryhero.whetstone.app.ContributesAppInjector
 
-@HiltAndroidApp
-class ValorantAppApplication : Application()
+@ContributesAppInjector(generateAppComponent = true)
+class ValorantAppApplication : Application(), ApplicationComponentOwner {
+
+    override val applicationComponent by lazy { ValorantApplicationComponent.Factory.create()}
+
+    override fun onCreate() {
+        Whetstone.inject(this)
+        super.onCreate()
+    }
+}

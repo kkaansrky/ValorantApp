@@ -6,15 +6,17 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.deliveryhero.whetstone.Whetstone
+import com.deliveryhero.whetstone.activity.ContributesActivityInjector
 import com.kkaansrky.valorantapp.ui.Screen
 import com.kkaansrky.valorantapp.ui.agent.agentdetail.AgentDetailScreen
 import com.kkaansrky.valorantapp.ui.agent.listagents.AgentsListScreen
 import com.kkaansrky.valorantapp.ui.theme.ValorantAppTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+@ContributesActivityInjector
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        Whetstone.inject(this)
         super.onCreate(savedInstanceState)
         setContent {
             ValorantAppTheme {

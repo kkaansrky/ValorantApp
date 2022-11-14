@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kkaansrky.valorantapp.data.entities.Agent
 import com.kkaansrky.valorantapp.ui.Screen
@@ -22,9 +21,8 @@ import com.kkaansrky.valorantapp.ui.theme.CocoaBean
 @Composable
 fun AgentsListScreen(
     navController: NavController,
-    agentsListViewModel: AgentsListViewModel = hiltViewModel()
 ) {
-    val state = agentsListViewModel.uiState.collectAsState().value
+    /*val state = AgentListUiState.Error("dspgdfhpsdh")
     Log.d(TAG, "AgentsListScreen: " + state)
     when (state) {
         is AgentListUiState.Success -> ShowAgentsList(state.agents,navController)
@@ -35,7 +33,7 @@ fun AgentsListScreen(
         is AgentListUiState.Loading -> {
             ShowLoading()
         }
-    }
+    }*/
 }
 
 @Composable

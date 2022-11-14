@@ -10,12 +10,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.deliveryhero.whetstone.compose.injectedViewModel
 import com.kkaansrky.valorantapp.data.entities.Agent
 import com.kkaansrky.valorantapp.data.entities.AgentResponse
 import com.kkaansrky.valorantapp.ui.status.ShowError
@@ -28,8 +27,7 @@ import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
 
 @Composable
 fun AgentDetailScreen(
-    navController: NavController,
-    agentDetailViewModel: AgentDetailViewModel = hiltViewModel()
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
@@ -37,7 +35,8 @@ fun AgentDetailScreen(
             .fillMaxHeight()
             .background(Mojo)
     ) {
-        val state = agentDetailViewModel.uiState.collectAsState().value
+        val viewModel by injectedViewModel<AgentDetailViewModel>()
+        val state = viewModel
 
         when (state) {
             is AgentDetailUiState.Loading -> ShowLoading()

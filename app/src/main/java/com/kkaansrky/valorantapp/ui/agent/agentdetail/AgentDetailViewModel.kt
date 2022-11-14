@@ -6,18 +6,18 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.deliveryhero.whetstone.viewmodel.ContributesViewModel
 import com.kkaansrky.valorantapp.data.entities.AgentResponse
 import com.kkaansrky.valorantapp.data.repository.ApiRepository
 import com.kkaansrky.valorantapp.util.Constants
 import com.kkaansrky.valorantapp.util.Constants.APP_LANGUAGE
 import com.kkaansrky.valorantapp.util.Resource
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@HiltViewModel
+@ContributesViewModel
 class AgentDetailViewModel @Inject constructor(
     apiRepository: ApiRepository,
     savedStateHandle: SavedStateHandle
