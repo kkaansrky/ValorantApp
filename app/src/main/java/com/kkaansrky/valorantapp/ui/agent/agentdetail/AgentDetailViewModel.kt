@@ -1,8 +1,6 @@
 package com.kkaansrky.valorantapp.ui.agent.agentdetail
 
 
-import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,9 +26,7 @@ class AgentDetailViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             savedStateHandle.get<String>(Constants.PARAM_AGENT_UID)?.let { agentUID ->
-                Log.d(ContentValues.TAG, "-" + agentUID + "-" + APP_LANGUAGE)
                 apiRepository.getAgentByUID(agentUID, APP_LANGUAGE).collect { response ->
-                    Log.d(ContentValues.TAG, "viewModelAgentDetailResponse: " + response)
                     _uiState.value = when (response.status) {
                         Resource.Status.SUCCESS -> AgentDetailUiState.Success(response.data!!)
                         Resource.Status.ERROR -> AgentDetailUiState.Error(response.message)

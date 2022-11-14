@@ -1,7 +1,5 @@
 package com.kkaansrky.valorantapp.ui.agent.listagents
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kkaansrky.valorantapp.data.entities.Agent
@@ -26,7 +24,6 @@ class AgentsListViewModel @Inject constructor(
         viewModelScope.launch {
             apiRepository.getAgents(APP_LANGUAGE, isPlayable)
                 .collect { response ->
-                    Log.d(TAG, "viewModelAgentsResponse: " + response)
                     _uiState.value = when (response.status) {
                         Resource.Status.SUCCESS -> AgentListUiState.Success(response.data!!.data)
                         Resource.Status.ERROR -> AgentListUiState.Error(response.message)

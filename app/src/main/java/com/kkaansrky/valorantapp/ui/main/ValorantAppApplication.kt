@@ -8,7 +8,7 @@ import com.deliveryhero.whetstone.app.ContributesAppInjector
 @ContributesAppInjector(generateAppComponent = true)
 class ValorantAppApplication : Application(), ApplicationComponentOwner {
 
-    override val applicationComponent by lazy { ValorantApplicationComponent.Factory.create()}
+    override val applicationComponent by lazy { GeneratedApplicationComponent.create(this)}
 
     override fun onCreate() {
         Whetstone.inject(this)

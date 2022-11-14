@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.deliveryhero.whetstone.compose.injectedViewModel
 import com.kkaansrky.valorantapp.data.entities.Agent
 import com.kkaansrky.valorantapp.ui.Screen
 import com.kkaansrky.valorantapp.ui.agent.items.AgentListItem
@@ -21,9 +22,10 @@ import com.kkaansrky.valorantapp.ui.theme.CocoaBean
 @Composable
 fun AgentsListScreen(
     navController: NavController,
+    viewModel: AgentsListViewModel = injectedViewModel()
 ) {
-    /*val state = AgentListUiState.Error("dspgdfhpsdh")
-    Log.d(TAG, "AgentsListScreen: " + state)
+    val state = viewModel.uiState.collectAsState().value
+
     when (state) {
         is AgentListUiState.Success -> ShowAgentsList(state.agents,navController)
         is AgentListUiState.Error -> {
@@ -33,7 +35,7 @@ fun AgentsListScreen(
         is AgentListUiState.Loading -> {
             ShowLoading()
         }
-    }*/
+    }
 }
 
 @Composable

@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,7 +28,8 @@ import me.onebone.toolbar.rememberCollapsingToolbarScaffoldState
 
 @Composable
 fun AgentDetailScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: AgentDetailViewModel = injectedViewModel()
 ) {
     Box(
         modifier = Modifier
@@ -35,8 +37,7 @@ fun AgentDetailScreen(
             .fillMaxHeight()
             .background(Mojo)
     ) {
-        val viewModel by injectedViewModel<AgentDetailViewModel>()
-        val state = viewModel
+        val state = viewModel.uiState.collectAsState().value
 
         when (state) {
             is AgentDetailUiState.Loading -> ShowLoading()
