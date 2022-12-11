@@ -1,7 +1,7 @@
-package com.kkaansrky.valorantapp.domain.repository
+package com.kkaansrky.valorantapp.data.repository.agent
 
-import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
-import com.kkaansrky.valorantapp.data.entities.agent.AgentsResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentsResponse
 import com.kkaansrky.valorantapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 

@@ -15,7 +15,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
-import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
+import com.kkaansrky.valorantapp.data.model.agent.AgentDto
 import com.kkaansrky.valorantapp.ui.theme.Mojo
 import com.kkaansrky.valorantapp.ui.theme.RadicalRed
 

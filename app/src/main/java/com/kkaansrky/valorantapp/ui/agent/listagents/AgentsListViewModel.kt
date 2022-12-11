@@ -2,8 +2,8 @@ package com.kkaansrky.valorantapp.ui.agent.listagents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
-import com.kkaansrky.valorantapp.domain.usecase.GetAgentsUseCase
+import com.kkaansrky.valorantapp.data.model.agent.AgentDto
+import com.kkaansrky.valorantapp.domain.usecase.agent.GetAgentsUseCase
 import com.kkaansrky.valorantapp.util.Constants.APP_LANGUAGE
 import com.kkaansrky.valorantapp.util.Constants.IS_PLAYABLE
 import com.kkaansrky.valorantapp.util.Resource

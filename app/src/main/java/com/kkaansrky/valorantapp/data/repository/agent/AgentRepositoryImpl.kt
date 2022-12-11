@@ -1,7 +1,6 @@
-package com.kkaansrky.valorantapp.data.repository
+package com.kkaansrky.valorantapp.data.repository.agent
 
 import com.kkaansrky.valorantapp.data.remote.source.agent.AgentRemoteDataSource
-import com.kkaansrky.valorantapp.domain.repository.AgentRepository
 import com.kkaansrky.valorantapp.util.performNetworkOperation
 import javax.inject.Inject
 

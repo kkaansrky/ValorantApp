@@ -1,4 +1,4 @@
-package com.kkaansrky.valorantapp.data.entities.buddies
+package com.kkaansrky.valorantapp.data.model.buddies
 
 data class Buddy(
     val assetPath: String,

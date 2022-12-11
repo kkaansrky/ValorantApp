@@ -3,8 +3,8 @@ package com.kkaansrky.valorantapp.data.di
 import com.kkaansrky.valorantapp.data.remote.api.AgentService
 import com.kkaansrky.valorantapp.data.remote.source.agent.AgentRemoteDataSource
 import com.kkaansrky.valorantapp.data.remote.source.agent.AgentRemoteDataSourceImpl
-import com.kkaansrky.valorantapp.data.repository.AgentRepositoryImpl
-import com.kkaansrky.valorantapp.domain.repository.AgentRepository
+import com.kkaansrky.valorantapp.data.repository.agent.AgentRepositoryImpl
+import com.kkaansrky.valorantapp.data.repository.agent.AgentRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

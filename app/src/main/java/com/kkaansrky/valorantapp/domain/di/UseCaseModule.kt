@@ -1,8 +1,10 @@
 package com.kkaansrky.valorantapp.domain.di
 
-import com.kkaansrky.valorantapp.domain.repository.AgentRepository
-import com.kkaansrky.valorantapp.domain.usecase.GetAgentUseCase
-import com.kkaansrky.valorantapp.domain.usecase.GetAgentsUseCase
+import com.kkaansrky.valorantapp.data.repository.agent.AgentRepository
+import com.kkaansrky.valorantapp.data.repository.buddy.BuddyRepository
+import com.kkaansrky.valorantapp.domain.usecase.agent.GetAgentUseCase
+import com.kkaansrky.valorantapp.domain.usecase.agent.GetAgentsUseCase
+import com.kkaansrky.valorantapp.domain.usecase.buddy.GetBuddyUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -24,4 +26,10 @@ class UseCaseModule {
     fun provideGetAgentUseCase(
         agentRepository: AgentRepository
     ) = GetAgentUseCase(agentRepository)
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetBuddyUseCase(
+        buddyRepository: BuddyRepository
+    ) = GetBuddyUseCase(buddyRepository)
 }

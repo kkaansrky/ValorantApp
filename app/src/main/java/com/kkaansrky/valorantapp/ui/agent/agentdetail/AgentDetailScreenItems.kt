@@ -17,7 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
 import com.kkaansrky.valorantapp.R
-import com.kkaansrky.valorantapp.data.entities.agent.Ability
+import com.kkaansrky.valorantapp.data.model.agent.Ability
 import com.kkaansrky.valorantapp.ui.theme.CocoaBean
 
 val verticalPadding = 0.dp

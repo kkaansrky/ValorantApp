@@ -1,9 +1,9 @@
-package com.kkaansrky.valorantapp.domain.usecase
+package com.kkaansrky.valorantapp.domain.usecase.agent
 
-import com.kkaansrky.valorantapp.data.entities.agent.AgentsResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentsResponse
 import com.kkaansrky.valorantapp.domain.base.BaseUseCase
 import com.kkaansrky.valorantapp.domain.base.IParams
-import com.kkaansrky.valorantapp.domain.repository.AgentRepository
+import com.kkaansrky.valorantapp.data.repository.agent.AgentRepository
 import com.kkaansrky.valorantapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 

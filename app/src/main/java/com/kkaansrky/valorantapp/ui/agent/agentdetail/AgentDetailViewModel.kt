@@ -3,8 +3,8 @@ package com.kkaansrky.valorantapp.ui.agent.agentdetail
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
-import com.kkaansrky.valorantapp.domain.usecase.GetAgentUseCase
+import com.kkaansrky.valorantapp.data.model.agent.AgentResponse
+import com.kkaansrky.valorantapp.domain.usecase.agent.GetAgentUseCase
 import com.kkaansrky.valorantapp.util.Constants
 import com.kkaansrky.valorantapp.util.Constants.APP_LANGUAGE
 import com.kkaansrky.valorantapp.util.Resource

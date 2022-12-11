@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
+import com.kkaansrky.valorantapp.data.model.agent.AgentDto
 import com.kkaansrky.valorantapp.ui.agent.items.AgentListItem
 import com.kkaansrky.valorantapp.ui.main.Screen
 import com.kkaansrky.valorantapp.ui.status.ShowError

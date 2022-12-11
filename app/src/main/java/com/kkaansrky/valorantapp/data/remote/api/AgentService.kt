@@ -1,7 +1,7 @@
 package com.kkaansrky.valorantapp.data.remote.api
 
-import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
-import com.kkaansrky.valorantapp.data.entities.agent.AgentsResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
