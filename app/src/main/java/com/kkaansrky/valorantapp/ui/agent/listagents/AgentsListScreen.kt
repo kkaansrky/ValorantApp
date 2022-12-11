@@ -1,20 +1,23 @@
 package com.kkaansrky.valorantapp.ui.agent.listagents
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kkaansrky.valorantapp.data.entities.agent.AgentDto
-import com.kkaansrky.valorantapp.ui.main.Screen
 import com.kkaansrky.valorantapp.ui.agent.items.AgentListItem
+import com.kkaansrky.valorantapp.ui.main.Screen
 import com.kkaansrky.valorantapp.ui.status.ShowError
 import com.kkaansrky.valorantapp.ui.status.ShowLoading
 import com.kkaansrky.valorantapp.ui.theme.CocoaBean
@@ -25,12 +28,10 @@ fun AgentsListScreen(
     agentsListViewModel: AgentsListViewModel = hiltViewModel()
 ) {
     val state = agentsListViewModel.uiState.collectAsState().value
-    Log.d(TAG, "AgentsListScreen: " + state)
     when (state) {
-        is AgentListUiState.Success -> ShowAgentsList(state.agents,navController)
+        is AgentListUiState.Success -> ShowAgentsList(state.agents, navController)
         is AgentListUiState.Error -> {
             ShowError()
-            Log.d(TAG, "AgentsListScreen: " + state.exception)
         }
         is AgentListUiState.Loading -> {
             ShowLoading()

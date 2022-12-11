@@ -12,7 +12,6 @@ class AgentRemoteDataSourceImpl @Inject constructor(
         agentService.getAgents(language, isPlayableCharacter)
     }
 
-
     override suspend fun getAgentByUID(agentUID: String, language: String) = getResult {
         agentService.getAgentByUID(agentUID, language)
     }

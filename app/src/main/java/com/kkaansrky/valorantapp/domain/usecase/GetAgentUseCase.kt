@@ -1,22 +1,22 @@
 package com.kkaansrky.valorantapp.domain.usecase
 
-import com.kkaansrky.valorantapp.data.entities.agent.AgentsResponse
+import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
 import com.kkaansrky.valorantapp.domain.base.BaseUseCase
 import com.kkaansrky.valorantapp.domain.base.IParams
 import com.kkaansrky.valorantapp.domain.repository.AgentRepository
 import com.kkaansrky.valorantapp.util.Resource
 import kotlinx.coroutines.flow.Flow
 
-class GetAgentsUseCase(
+class GetAgentUseCase(
     private val agentRepository: AgentRepository
-): BaseUseCase<GetAgentsUseCase.Params, Resource<AgentsResponse>> {
+) : BaseUseCase<GetAgentUseCase.Params, Resource<AgentResponse>> {
 
     data class Params(
-        val language: String,
-        val isPlayableCharacter: Boolean
+        val agentUID: String,
+        val language: String
     ) : IParams
 
-    override suspend fun invoke(param: Params): Flow<Resource<AgentsResponse>> {
-        return agentRepository.getAgents(param.language,param.isPlayableCharacter)
+    override suspend fun invoke(param: Params): Flow<Resource<AgentResponse>> {
+        return agentRepository.getAgentByUID(param.agentUID, param.language)
     }
 }

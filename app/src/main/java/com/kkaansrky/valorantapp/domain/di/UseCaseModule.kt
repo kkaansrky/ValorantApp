@@ -1,6 +1,7 @@
 package com.kkaansrky.valorantapp.domain.di
 
 import com.kkaansrky.valorantapp.domain.repository.AgentRepository
+import com.kkaansrky.valorantapp.domain.usecase.GetAgentUseCase
 import com.kkaansrky.valorantapp.domain.usecase.GetAgentsUseCase
 import dagger.Module
 import dagger.Provides
@@ -17,4 +18,10 @@ class UseCaseModule {
     fun provideGetAgentsUseCase(
         agentRepository: AgentRepository
     ) = GetAgentsUseCase(agentRepository)
+
+    @ViewModelScoped
+    @Provides
+    fun provideGetAgentUseCase(
+        agentRepository: AgentRepository
+    ) = GetAgentUseCase(agentRepository)
 }

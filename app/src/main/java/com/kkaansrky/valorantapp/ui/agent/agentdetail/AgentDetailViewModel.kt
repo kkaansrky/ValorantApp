@@ -1,13 +1,10 @@
 package com.kkaansrky.valorantapp.ui.agent.agentdetail
 
-
-import android.content.ContentValues
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.kkaansrky.valorantapp.data.entities.agent.AgentResponse
-import com.kkaansrky.valorantapp.data.repository.AgentRepositoryImpl
+import com.kkaansrky.valorantapp.domain.usecase.GetAgentUseCase
 import com.kkaansrky.valorantapp.util.Constants
 import com.kkaansrky.valorantapp.util.Constants.APP_LANGUAGE
 import com.kkaansrky.valorantapp.util.Resource
@@ -19,21 +16,28 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgentDetailViewModel @Inject constructor(
-    agentRepositoryImpl: AgentRepositoryImpl,
-    savedStateHandle: SavedStateHandle
+    private val getAgentUseCase: GetAgentUseCase,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val _uiState = MutableStateFlow<AgentDetailUiState>(AgentDetailUiState.Loading)
     val uiState: StateFlow<AgentDetailUiState> = _uiState
 
     init {
         viewModelScope.launch {
+            _uiState.value = AgentDetailUiState.Loading
             savedStateHandle.get<String>(Constants.PARAM_AGENT_UID)?.let { agentUID ->
-                Log.d(ContentValues.TAG, "-" + agentUID + "-" + APP_LANGUAGE)
-                agentRepositoryImpl.getAgentByUID(agentUID, APP_LANGUAGE).collect { response ->
-                    Log.d(ContentValues.TAG, "viewModelAgentDetailResponse: " + response)
-                    _uiState.value = when (response.status) {
-                        Resource.Status.SUCCESS -> AgentDetailUiState.Success(response.data!!)
-                        Resource.Status.ERROR -> AgentDetailUiState.Error(response.message)
+                val params = GetAgentUseCase.Params(agentUID, APP_LANGUAGE)
+                getAgentUseCase.invoke(params).collect { resource ->
+                    _uiState.value = when (resource.status) {
+                        Resource.Status.SUCCESS -> {
+                            if (resource.data != null) {
+                                AgentDetailUiState.Success(resource.data)
+                            } else {
+                                AgentDetailUiState.Error("Something went wrong")
+                            }
+
+                        }
+                        Resource.Status.ERROR -> AgentDetailUiState.Error(resource.message)
                         else -> AgentDetailUiState.Loading
                     }
                 }
