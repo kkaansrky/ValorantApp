@@ -18,7 +18,7 @@ class AgentsListViewModel @Inject constructor(
     private val getAgentsUseCase: GetAgentsUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow<AgentListUiState>(AgentListUiState.Success(emptyList()))
+    private val _uiState = MutableStateFlow<AgentListUiState>(AgentListUiState.Loading)
     val uiState: StateFlow<AgentListUiState> = _uiState
 
     init {
