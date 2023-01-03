@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -25,6 +26,7 @@ import com.kkaansrky.valorantapp.ui.agent.listagents.AgentsListScreen
 import com.kkaansrky.valorantapp.ui.maps.MapsScreen
 import com.kkaansrky.valorantapp.ui.theme.CocoaBean
 import com.kkaansrky.valorantapp.ui.theme.Mojo
+import com.kkaansrky.valorantapp.ui.theme.Typography
 import com.kkaansrky.valorantapp.ui.theme.ValorantAppTheme
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -81,32 +83,41 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun SetFooter(navController: NavHostController, modifier: Modifier) {
         Box(
-            modifier = modifier.fillMaxWidth()
+            modifier = modifier
+                .fillMaxWidth()
                 .background(Mojo)
         ) {
             Row(
-                Modifier.fillMaxWidth()
+                Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 val stateValue = buttonState.collectAsState().value
 
                 Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
                     onClick = {
                         navController.navigate(Screen.AgentsListScreen.route)
                         _buttonState.value = 1
                     },
                     enabled = stateValue != 1
                 ) {
-                    Text(text = "Agents")
+                    Text(text = "Agents", style = Typography.body1)
                 }
 
                 Button(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .weight(1f),
                     onClick = {
                         navController.navigate(Screen.MapsScreen.route)
                         _buttonState.value = 2
                     },
                     enabled = stateValue != 2
                 ) {
-                    Text(text = "Maps")
+                    Text(text = "Maps", style = Typography.body1)
                 }
             }
         }

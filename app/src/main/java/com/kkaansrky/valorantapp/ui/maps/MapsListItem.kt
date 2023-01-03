@@ -2,7 +2,6 @@ package com.kkaansrky.valorantapp.ui.maps
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,7 +24,7 @@ import com.kkaansrky.valorantapp.ui.theme.Mojo
 import com.kkaansrky.valorantapp.ui.theme.RadicalRed
 
 @Composable
-fun MapsListItem(map: MapDto, onItemClick: (MapDto) -> Unit) {
+fun MapsListItem(map: MapDto) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -37,8 +36,8 @@ fun MapsListItem(map: MapDto, onItemClick: (MapDto) -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(0.dp, 4.dp)
-                .clickable { onItemClick(map) },
+                .padding(0.dp, 4.dp),
+                //.clickable { onItemClick(map) }
             verticalArrangement = Arrangement.SpaceBetween,
             horizontalAlignment = Alignment.CenterHorizontally,
 
