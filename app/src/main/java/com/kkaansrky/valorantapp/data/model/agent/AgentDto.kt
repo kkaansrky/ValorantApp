@@ -1,15 +1,6 @@
-package com.kkaansrky.valorantapp.data.entities
+package com.kkaansrky.valorantapp.data.model.agent
 
-
-data class AgentsResponse(
-    val `data`: List<Agent>,
-)
-
-data class AgentResponse(
-    val data: Agent
-)
-
-data class Agent(
+data class AgentDto(
     val abilities: List<Ability>,
     val assetPath: String,
     val background: String,
@@ -59,4 +50,3 @@ data class VoiceLine(
     val mediaList: List<Media>,
     val minDuration: Double
 )
-

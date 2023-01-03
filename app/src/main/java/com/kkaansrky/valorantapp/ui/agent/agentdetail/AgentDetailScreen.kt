@@ -16,8 +16,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.kkaansrky.valorantapp.data.entities.Agent
-import com.kkaansrky.valorantapp.data.entities.AgentResponse
+import com.kkaansrky.valorantapp.data.model.agent.AgentDto
+import com.kkaansrky.valorantapp.data.model.agent.AgentResponse
 import com.kkaansrky.valorantapp.ui.status.ShowError
 import com.kkaansrky.valorantapp.ui.status.ShowLoading
 import com.kkaansrky.valorantapp.ui.theme.Mojo
@@ -89,7 +89,7 @@ fun ShowAgentCollapsing(agent: AgentResponse) = with(agent.data) {
 }
 
 @Composable
-fun ShowAgentSpecs(agent: Agent) {
+fun ShowAgentSpecs(agent: AgentDto) {
     ShowAgentHeader(header = agent.displayName)
     ShowAgentText(text = agent.description)
     ShowAgentAbilities(abilities = agent.abilities)

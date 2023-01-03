@@ -1,12 +1,11 @@
 package com.kkaansrky.valorantapp.ui.agent.listagents
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kkaansrky.valorantapp.data.entities.Agent
-import com.kkaansrky.valorantapp.data.repository.ApiRepository
+import com.kkaansrky.valorantapp.data.model.agent.AgentDto
+import com.kkaansrky.valorantapp.domain.usecase.agent.GetAgentsUseCase
 import com.kkaansrky.valorantapp.util.Constants.APP_LANGUAGE
+import com.kkaansrky.valorantapp.util.Constants.IS_PLAYABLE
 import com.kkaansrky.valorantapp.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,32 +15,37 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AgentsListViewModel @Inject constructor(
-    private var apiRepository: ApiRepository
+    private val getAgentsUseCase: GetAgentsUseCase
 ) : ViewModel() {
 
-    val isPlayable = true
-
-    private val _uiState = MutableStateFlow<AgentListUiState>(AgentListUiState.Success(emptyList()))
+    private val _uiState = MutableStateFlow<AgentListUiState>(AgentListUiState.Loading)
     val uiState: StateFlow<AgentListUiState> = _uiState
 
     init {
         viewModelScope.launch {
-            apiRepository.getAgents(APP_LANGUAGE, isPlayable)
-                .collect { response ->
-                    Log.d(TAG, "viewModelAgentsResponse: " + response)
-                    _uiState.value = when (response.status) {
-                        Resource.Status.SUCCESS -> AgentListUiState.Success(response.data!!.data)
-                        Resource.Status.ERROR -> AgentListUiState.Error(response.message)
-                        else -> AgentListUiState.Loading
+            _uiState.value = AgentListUiState.Loading
+            val params = GetAgentsUseCase.Params(APP_LANGUAGE, IS_PLAYABLE)
+            getAgentsUseCase(params).collect { resource ->
+                _uiState.value = when (resource.status) {
+                    Resource.Status.SUCCESS ->{
+                        if (resource.data?.data != null) {
+                            AgentListUiState.Success(resource.data.data)
+                        }else {
+                            AgentListUiState.Error("Something went wrong")
+                        }
                     }
+
+                    Resource.Status.ERROR -> AgentListUiState.Error(resource.message)
+                    else -> AgentListUiState.Loading
                 }
+            }
         }
     }
 
 }
 
 sealed class AgentListUiState {
-    data class Success(val agents: List<Agent>) : AgentListUiState()
+    data class Success(val agents: List<AgentDto>) : AgentListUiState()
     data class Error(val exception: String?) : AgentListUiState()
     object Loading : AgentListUiState()
 }

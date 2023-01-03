@@ -1,14 +1,4 @@
-package com.kkaansrky.valorantapp.data.entities.buddies
-
-data class BuddiesResponse(
-    val `data`: List<Buddy>,
-    val status: Int
-)
-
-data class BuddyResponse(
-    val `data`: Buddy,
-    val status: Int
-)
+package com.kkaansrky.valorantapp.data.model.buddies
 
 data class Buddy(
     val assetPath: String,

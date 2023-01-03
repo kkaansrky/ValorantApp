@@ -1,8 +1,6 @@
-package com.kkaansrky.valorantapp.di
+package com.kkaansrky.valorantapp.data.di
 
 import com.google.gson.Gson
-import com.kkaansrky.valorantapp.data.remote.ApiService
-import com.kkaansrky.valorantapp.data.remote.RemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,10 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-    @Provides
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
 
     @Provides
     fun provideRetrofit(
@@ -32,13 +26,6 @@ class NetworkModule {
     @Provides
     fun provideGson(): Gson {
         return Gson()
-    }
-
-    @Provides
-    fun provideRemoteDataSource(
-        apiService: ApiService,
-    ): RemoteDataSource {
-        return RemoteDataSource(apiService)
     }
 
     @Provides
